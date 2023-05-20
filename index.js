@@ -25,8 +25,33 @@ const [currentTodo, setCurrentToto] = React.useState({});
 // funtion to get value of the input and set new state
 function handleEditInputChange(e){
   // settting the new state value to what is currently in the input box
-  setCurrentToto({...currentTodo, text: e.target.value})
+  setCurrentToto({...currentTodo, text: e.target.value});
   console.log(currentTodo)
+}
+
+// funtion to handle edit button
+function handleEditClick(newTask){
+  setISEdiditing(true)
+  // set currentTodo to the todo iterm that was click
+  setCurrentToto({...newTask})
+  console.log(newTask)
+}
+
+// function tohandle updateClick
+function handleUpdateTodo(id, updateTodo){
+
+
+  const updateIterm = todoTast.map((newTask)=>{
+    return newTask.id === id ? updateTodo : newTask
+  })
+  setISEdiditing(false)
+  setTodoTast(updateIterm)
+}
+
+function handleEditFormSubmit(e){
+  e.preventDefault()
+
+  handleUpdateTodo(currentTodo.id, currentTodo);
 }
 
 
@@ -98,7 +123,24 @@ React.useEffect(()=>{
 
   return (
     <div className="todo-Container">
+      {/* we need to conditionaly render deffrent input  based on if we are on editing mode or add mood*/}
       
+       {isEditing ? (
+        <form onSubmit={handleEditFormSubmit}>
+          <h1>Edit Todo</h1>
+          <label htmlFor="editTodo">Edit todo</label>
+    
+        <input 
+        name="editTodo"
+        type="text"
+        placeholder="edit todo"
+        value={currentTodo.text}
+        onChange={handleEditInputChange}
+        />
+        <button type="submit">Update</button>
+        <button onClick={()=>setISEdiditing(false)}>Cancel</button>
+        </form>
+       ) : (
       <form onSubmit={handleSubmitIterms}>
       <h1>Todo List</h1>
       <input
@@ -109,12 +151,13 @@ React.useEffect(()=>{
         placeholder="Enter new task..."
       ></input>
       <button onClick={handleSubmitIterms}>Add</button>
-      </form>
+      </form> 
+       )}
 <ul>
   
     {todoTast.map((newTask)=>(
 
-    <li key={newTask.id}>{newTask.text} <span>{<button onClick={()=>handleEditInputChange(newTask.id)} >edit</button>} {<button onClick={()=>handleDeleteClick(newTask.id)}>Delete</button>}</span></li>
+    <li key={newTask.id}>{newTask.text} <span>{<button onClick={()=>handleEditClick(newTask)} >edit</button>} {<button onClick={()=>handleDeleteClick(newTask.id)}>Delete</button>}</span></li>
     ))}
 </ul>
 </div>
