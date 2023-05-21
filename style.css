@@ -1,29 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
 }
 
 .todo-Container {
-
+    margin-top: 20vh;
+    font-family: poppins;
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 80%;
-    border: 2px solid black;
+    width: 40vw;
+    border: 2px solid #b90976dc;
     padding: 10px;
     gap: 20px;
     margin-right: auto;
     margin-left: auto;
+    /* background-color: #1a0433; */
+}
+
+form {
+    background-color: #b90976dc;
+    padding-bottom: 10px;
+}
+
+form button {
+    height: 27px;
+    width: 10%;
+    background-color: #b90976dc;
+    border: 1px solid #fff;
+color: #ffffff;
+transition: 0.3s ease-in;
+
+}
+
+h1 {
+    color: #440c2edc;
 }
 
 input {
     outline: none;
-    width: 90%;
-    height: 20px;
+    border: 1px solid #fff;
+    width: 80%;
+    height: 25px;
+    margin-bottom: 20px;
+    padding: 0 2px;
 }
 
 li {
     display: flex;
     justify-content: space-between;
     /* overflow: scroll; */
+    border:2px solid #b90976dc;
+    /* background-color: #543f6ddc; */
+    color: #440c2edc;
+    border-radius: 3px;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+li button {
+    color: #440c2edc;
+    border: 1px solid #b90976dc;
+    padding: 2px;
+    color: #440c2edc;
+    cursor: pointer;
+    transform: scaleX(500deg);
+
+    transition: 0.3s ease-in;
+}
+
+button:hover {
+    background-color: #440c2edc;
+    /* border: none; */
+    color: #fff;
+    transform: scaleX(20deg);
+}
+
+@media screen and (max-width:770px) {
+    .todo-Container {
+        width: 90vw;
+        margin-top: auto;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form button {
+        width: 100px;
+        gap: 10px;
+    }
 }
